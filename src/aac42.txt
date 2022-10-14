@@ -1,0 +1,61 @@
+
+LBL "AAC"
+
+  MVAR "STR"
+  MVAR "CON"
+  MVAR "DEX"
+  MVAR "INT"
+  MVAR "WIS"
+  MVAR "CHA"
+  VARMENU "AAC"
+
+  RCL "STR" \ XEQ 21 \ STO "TSTR"
+  RCL "CON" \ XEQ 21 \ STO "TCON"
+  RCL "DEX" \ XEQ 21 \ STO "TDEX"
+  RCL "INT" \ XEQ 21 \ STO "TINT"
+  RCL "WIS" \ XEQ 21 \ STO "TWIS"
+  RCL "CHA" \ XEQ 21 \ STO "TCHA"
+
+;  VIEW "TSTR"
+;  STOP
+;  VIEW "TCON"
+;  STOP
+;  VIEW "TDEX"
+;  STOP
+;  VIEW "TINT"
+;  STOP
+;  VIEW "TWIS"
+;  STOP
+;  VIEW "TCHA"
+;  STOP
+;
+;  LBL 21
+;    +/-
+;    21
+;    +
+;  RTN
+;
+END
+
+;; LBL 99
+;; ENTER
+;; FP
+;; +
+;; IP
+;; RTN
+;; LBL 02
+;; +
+;; 2
+;; /
+;; XEQ 99
+;; RTN
+;; LBL 03
+;; +
+;; +
+;; 3
+;; /
+;; XEQ 99
+;; RTN
+;; LBL 98
+;; END
+
