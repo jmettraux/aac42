@@ -1,13 +1,14 @@
 
 LBL "AAC"
 
-  ;MVAR "STR"
-  ;MVAR "CON"
-  ;MVAR "DEX"
-  ;MVAR "INT"
-  ;MVAR "WIS"
-  ;MVAR "CHA"
-  ;VARMENU "AAC"
+  MVAR "STR"
+  MVAR "CON"
+  MVAR "DEX"
+  MVAR "INT"
+  MVAR "WIS"
+  MVAR "CHA"
+  VARMENU "AAC"
+  STROP
 
   ;RCL "STR" \ XEQ 21 \ STO "TSTR"
   ;RCL "CON" \ XEQ 21 \ STO "TCON"
@@ -19,6 +20,9 @@ LBL "AAC"
    " STR" \ RCL "STR" \ AIP
   ├" CON" \ RCL "CON" \ AIP
   ├" DEX" \ RCL "DEX" \ AIP
+  ├"\\n INT" \ RCL "INT" \ AIP
+  ├" WIS" \ RCL "WIS" \ AIP
+  ├" CHA" \ RCL "CHA" \ AIP
   AVIEW
 
   GTO 99
