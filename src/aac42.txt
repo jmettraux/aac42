@@ -8,7 +8,7 @@ LBL "AAC"
   MVAR "WIS"
   MVAR "CHA"
   VARMENU "AAC"
-  STROP
+  STOP
 
   ;RCL "STR" \ XEQ 21 \ STO "TSTR"
   ;RCL "CON" \ XEQ 21 \ STO "TCON"
@@ -17,12 +17,13 @@ LBL "AAC"
   ;RCL "WIS" \ XEQ 21 \ STO "TWIS"
   ;RCL "CHA" \ XEQ 21 \ STO "TCHA"
 
-   " STR" \ RCL "STR" \ AIP
-  ├" CON" \ RCL "CON" \ AIP
-  ├" DEX" \ RCL "DEX" \ AIP
-  ├"\\n INT" \ RCL "INT" \ AIP
-  ├" WIS" \ RCL "WIS" \ AIP
-  ├" CHA" \ RCL "CHA" \ AIP
+    "  STR" \ RCL "STR" \ AIP
+  |-"  CON" \ RCL "CON" \ AIP
+  |-"  DEX" \ RCL "DEX" \ AIP
+  |-"LF"
+  |-"  INT" \ RCL "INT" \ AIP
+  |-"  WIS" \ RCL "WIS" \ AIP
+  |-"  CHA" \ RCL "CHA" \ AIP
   AVIEW
 
   GTO 99
