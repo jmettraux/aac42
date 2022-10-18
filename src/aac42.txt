@@ -10,44 +10,43 @@ LBL "AAC"
   VARMENU "AAC"
   STOP
 
-  ;RCL "STR" \ XEQ 21 \ STO "TSTR"
-  ;RCL "CON" \ XEQ 21 \ STO "TCON"
-  ;RCL "DEX" \ XEQ 21 \ STO "TDEX"
-  ;RCL "INT" \ XEQ 21 \ STO "TINT"
-  ;RCL "WIS" \ XEQ 21 \ STO "TWIS"
-  ;RCL "CHA" \ XEQ 21 \ STO "TCHA"
+  RCL "STR" \ XEQ 21 \ STO "TSTR"
+  RCL "CON" \ XEQ 21 \ STO "TCON"
+  RCL "DEX" \ XEQ 21 \ STO "TDEX"
+  RCL "INT" \ XEQ 21 \ STO "TINT"
+  RCL "WIS" \ XEQ 21 \ STO "TWIS"
+  RCL "CHA" \ XEQ 21 \ STO "TCHA"
 
+  CLA
     "  STR" \ RCL "STR" \ AIP
   |-"  CON" \ RCL "CON" \ AIP
   |-"  DEX" \ RCL "DEX" \ AIP
-  |-" "
+  |-"[LF]"
   |-"  INT" \ RCL "INT" \ AIP
   |-"  WIS" \ RCL "WIS" \ AIP
   |-"  CHA" \ RCL "CHA" \ AIP
   AVIEW
+  STOP
+  CLA
+  |-" TSTR" \ RCL "TSTR" \ AIP
+  |-" TCON" \ RCL "TCON" \ AIP
+  |-" TDEX" \ RCL "TDEX" \ AIP
+  |-"[LF]"
+  |-" TINT" \ RCL "TINT" \ AIP
+  |-" TWIS" \ RCL "TWIS" \ AIP
+  |-" TCHA" \ RCL "TCHA" \ AIP
+  AVIEW
+  STOP
 
   GTO 99
 
-;  VIEW "TSTR"
-;  STOP
-;  VIEW "TCON"
-;  STOP
-;  VIEW "TDEX"
-;  STOP
-;  VIEW "TINT"
-;  STOP
-;  VIEW "TWIS"
-;  STOP
-;  VIEW "TCHA"
-;  STOP
+  LBL 21
+    +/-
+    21
+    +
+  RTN
 
- LBL 21
-   +/-
-   21
-   +
- RTN
-
- LBL 99
+  LBL 99
 END
 
 ;; LBL 99
