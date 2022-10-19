@@ -93,10 +93,8 @@ LBL "AAC"
   CLA
     "  IMP" \ RCL "IMP" \ XEQ 22
   |-"  ALL" \ RCL "ALL" \ XEQ 22
-  AVIEW
-
-  CLA
-    " TIMP" \ RCL "TIMP" \ XEQ 22
+  |-"[LF]"
+  |-" TIMP" \ RCL "TIMP" \ XEQ 22
   |-" TALL" \ RCL "TALL" \ XEQ 22
   AVIEW
 
