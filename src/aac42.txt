@@ -17,26 +17,86 @@ LBL "AAC"
   RCL "WIS" \ XEQ 21 \ STO "TWIS"
   RCL "CHA" \ XEQ 21 \ STO "TCHA"
 
+  RCL "TSTR" \ RCL "TCON" \ RCL "TDEX" \ XEQ 03 \ STO "TBOD"
+  RCL "TINT" \ RCL "TWIS" \ RCL "TCHA" \ XEQ 03 \ STO "TSOU"
+
+  RCL "TSTR" \ RCL "TCON" \ XEQ 02 \ STO "TPHY"
+  RCL "TDEX" \ RCL "TINT" \ XEQ 02 \ STO "TEVA"
+  RCL "TWIS" \ RCL "TCHA" \ XEQ 02 \ STO "TMEN"
+  RCL "TINT" \ RCL "TWIS" \ XEQ 02 \ STO "TLEA"
+  RCL "TDEX" \ RCL "TWIS" \ XEQ 02 \ STO "TIMP"
+
+  RCL "TSTR" \ RCL "TCON" \ +
+  RCL "TDEX" \ +
+  RCL "TINT" \ +
+  RCL "TWIS" \ +
+  RCL "TCHA" \ +
+  6
+  /
+  XEQ 98
+  STO "TALL"
+
+  RCL "TBOD" \ XEQ 21 \ STO "BOD"
+  RCL "TSOU" \ XEQ 21 \ STO "SOU"
+  RCL "TPHY" \ XEQ 21 \ STO "PHY"
+  RCL "TEVA" \ XEQ 21 \ STO "EVA"
+  RCL "TMEN" \ XEQ 21 \ STO "MEN"
+  RCL "TLEA" \ XEQ 21 \ STO "LEA"
+  RCL "TIMP" \ XEQ 21 \ STO "IMP"
+  RCL "TALL" \ XEQ 21 \ STO "ALL"
+
+  CLLCD
+  CLMENU
+
   CLA
-    "  STR" \ RCL "STR" \ AIP
-  |-"  CON" \ RCL "CON" \ AIP
-  |-"  DEX" \ RCL "DEX" \ AIP
+    "  STR" \ RCL "STR" \ XEQ 22
+  |-"  CON" \ RCL "CON" \ XEQ 22
+  |-"  DEX" \ RCL "DEX" \ XEQ 22
   |-"[LF]"
-  |-"  INT" \ RCL "INT" \ AIP
-  |-"  WIS" \ RCL "WIS" \ AIP
-  |-"  CHA" \ RCL "CHA" \ AIP
+  |-"  INT" \ RCL "INT" \ XEQ 22
+  |-"  WIS" \ RCL "WIS" \ XEQ 22
+  |-"  CHA" \ RCL "CHA" \ XEQ 22
   AVIEW
-  STOP
+
   CLA
-  |-" TSTR" \ RCL "TSTR" \ AIP
-  |-" TCON" \ RCL "TCON" \ AIP
-  |-" TDEX" \ RCL "TDEX" \ AIP
+    " TSTR" \ RCL "TSTR" \ XEQ 22
+  |-" TCON" \ RCL "TCON" \ XEQ 22
+  |-" TDEX" \ RCL "TDEX" \ XEQ 22
   |-"[LF]"
-  |-" TINT" \ RCL "TINT" \ AIP
-  |-" TWIS" \ RCL "TWIS" \ AIP
-  |-" TCHA" \ RCL "TCHA" \ AIP
+  |-" TINT" \ RCL "TINT" \ XEQ 22
+  |-" TWIS" \ RCL "TWIS" \ XEQ 22
+  |-" TCHA" \ RCL "TCHA" \ XEQ 22
   AVIEW
-  STOP
+
+  CLA
+    "  BOD" \ RCL "BOD" \ XEQ 22
+  |-"  SOU" \ RCL "SOU" \ XEQ 22
+  |-"  PHY" \ RCL "PHY" \ XEQ 22
+  |-"[LF]"
+  |-"  EVA" \ RCL "EVA" \ XEQ 22
+  |-"  MEN" \ RCL "MEN" \ XEQ 22
+  |-"  LEA" \ RCL "LEA" \ XEQ 22
+  AVIEW
+
+  CLA
+    " TBOD" \ RCL "TBOD" \ XEQ 22
+  |-" TSOU" \ RCL "TSOU" \ XEQ 22
+  |-" TPHY" \ RCL "TPHY" \ XEQ 22
+  |-"[LF]"
+  |-" TEVA" \ RCL "TEVA" \ XEQ 22
+  |-" TMEN" \ RCL "TMEN" \ XEQ 22
+  |-" TLEA" \ RCL "TLEA" \ XEQ 22
+  AVIEW
+
+  CLA
+    "  IMP" \ RCL "IMP" \ XEQ 22
+  |-"  ALL" \ RCL "ALL" \ XEQ 22
+  AVIEW
+
+  CLA
+    " TIMP" \ RCL "TIMP" \ XEQ 22
+  |-" TALL" \ RCL "TALL" \ XEQ 22
+  AVIEW
 
   GTO 99
 
@@ -46,28 +106,37 @@ LBL "AAC"
     +
   RTN
 
-  LBL 99
-END
+  LBL 22  ; " 9" or "99"
+    STO 22
+    10
+    X>Y?
+    |-" "
+    RCL 22
+    AIP
+  RTN
 
-;; LBL 99
-;; ENTER
-;; FP
-;; +
-;; IP
-;; RTN
-;; LBL 02
-;; +
-;; 2
-;; /
-;; XEQ 99
-;; RTN
-;; LBL 03
-;; +
-;; +
-;; 3
-;; /
-;; XEQ 99
-;; RTN
-;; LBL 98
-;; END
+  LBL 02  ; mean of 2
+    +
+    2
+    /
+    XEQ 98
+  RTN
+
+  LBL 03  ; mean of 3
+    +
+    +
+    3
+    /
+    XEQ 98
+  RTN
+
+  LBL 98  ; round up
+    ENTER
+    FP
+    +
+    IP
+  RTN
+
+  LBL 99 ; over
+END
 
