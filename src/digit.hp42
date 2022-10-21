@@ -1,0 +1,65 @@
+
+; digit.hp42
+
+; x --> 01 the digit
+; y --> 02 offset from right side of screen
+; 4 --> 03 gets back the "size" VAR
+; 3 --> 04 gets back the "side" VAR
+
+; "size" is adj/opp of triangle
+; "side" is how many sizes in a digit length (edges not included)
+
+; 0-1 orientation
+; | |
+; 3-2
+
+LBL "digits"
+
+  STO "_digit"             ; the digit
+  RCL ST Y \ STO "_offset" ; the offset
+  4 \ STO "_size"          ; the size
+  3 \ STO "_side"          ; the side
+
+  3 \ 3 \ 10 \ 5 \ XEQ 97
+
+  GTO 99
+
+  LBL 01 ; draw horizontal bar (x, y)
+  RTN
+
+  LBL 02 ; draw vertical bar (x, y)
+  RTN
+
+  LBL 10 ; draw triangle (x, y) /|
+    ; TODO
+  RTN
+
+  LBL 11 ; draw triangle (x, y) |\
+    ; TODO <-----------------------------------------------
+  RTN
+
+  LBL 12 ; draw triangle (x, y) \|
+    ; TODO
+  RTN
+
+  LBL 13 ; draw triangle (x, y) |/
+    ; TODO
+  RTN
+
+  LBL 97 ; draw z pixels at +t offset (x, y, z, t)
+    XEQ 98
+    RCL "sY"
+    RCL "sX"
+    PIXEL
+  RTN
+
+  LBL 98 ; save x y
+         STO "sX" ; x
+    Rv \ STO "sY" ; y
+    Rv \ STO "sZ" ; z
+    Rv \ STO "sT" ; t
+  END
+
+  LBL 99 ; exit
+END
+
