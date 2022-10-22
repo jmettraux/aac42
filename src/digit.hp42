@@ -13,52 +13,71 @@
 ; | |
 ; 3-2
 
-LBL "digits"
+LBL "digit"
 
-  STO "_digit"             ; the digit
-  RCL ST Y \ STO "_offset" ; the offset
-  4 \ STO "_size"          ; the size
-  3 \ STO "_side"          ; the side
+  CLLCD
 
-  3 \ 3 \ 10 \ 5 \ XEQ 97
+  ;STO "_digit"             ; the digit
+  ;RCL ST Y \ STO "_offset" ; the offset
+  ;4 \ STO "_size"          ; the size
+  ;3 \ STO "_side"          ; the side
+
+  ;3 \ 3 \ 10 \ 5 \ XEQ 97
+  10 \ STO "oX"
+  15 \ STO "oY"
+
+  0 \ 0 \ XEQ 01
+  3 \ 3 \ XEQ 01
+
+  11 \ STO "oX"
+  16 \ STO "oY"
+
+  0 \ 0 \ XEQ 01
+  3 \ 3 \ XEQ 01
+
+  STOP
 
   GTO 99
 
-  LBL 01 ; draw horizontal bar (x, y)
-  RTN
+  ;LBL 01 ; draw horizontal bar (x, y)
+  ;RTN
+  ;LBL 02 ; draw vertical bar (x, y)
+  ;RTN
+  ;LBL 10 ; draw triangle (x, y) /|
+  ;  ; TODO
+  ;RTN
+  ;LBL 11 ; draw triangle (x, y) |\
+  ;  ; TODO <-----------------------------------------------
+  ;RTN
+  ;LBL 12 ; draw triangle (x, y) \|
+  ;  ; TODO
+  ;RTN
+  ;LBL 13 ; draw triangle (x, y) |/
+  ;  ; TODO
+  ;RTN
 
-  LBL 02 ; draw vertical bar (x, y)
-  RTN
-
-  LBL 10 ; draw triangle (x, y) /|
-    ; TODO
-  RTN
-
-  LBL 11 ; draw triangle (x, y) |\
-    ; TODO <-----------------------------------------------
-  RTN
-
-  LBL 12 ; draw triangle (x, y) \|
-    ; TODO
-  RTN
-
-  LBL 13 ; draw triangle (x, y) |/
-    ; TODO
-  RTN
-
-  LBL 97 ; draw z pixels at +t offset (x, y, z, t)
-    XEQ 98
-    RCL "sY"
-    RCL "sX"
+  LBL 01 ; draw pixel at (x, y) with origin at ("oX", "oY")
+    RCL "oX"
+    +
+    X<>Y
+    RCL "oY"
+    +
+    X<>Y
     PIXEL
   RTN
 
-  LBL 98 ; save x y
-         STO "sX" ; x
-    Rv \ STO "sY" ; y
-    Rv \ STO "sZ" ; z
-    Rv \ STO "sT" ; t
-  END
+  ;LBL 97 ; draw z pixels at +t offset (x, y, z, t)
+  ;  XEQ 98
+  ;  RCL "sY"
+  ;  RCL "sX"
+  ;  PIXEL
+  ;RTN
+  ;LBL 98 ; save x y
+  ;       STO "sX" ; x
+  ;  Rv \ STO "sY" ; y
+  ;  Rv \ STO "sZ" ; z
+  ;  Rv \ STO "sT" ; t
+  ;END
 
   LBL 99 ; exit
 END

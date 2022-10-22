@@ -1,7 +1,8 @@
 
 RUBY=ruby27
 PERL=perl
-REMOTEDIR=terebi:Dropbox/xfer
+#REMOTEDIR=terebi:Dropbox/xfer
+REMOTEDIR=azuma:tmp
 
 all: aac42 digit
 aac42:
