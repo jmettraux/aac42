@@ -29,7 +29,7 @@ LBL "digit"
   0 \  0 \ 0 \ XEQ 03
   1 \  6 \ 0 \ XEQ 03
   2 \ 12 \ 0 \ XEQ 03
-  1 \ 18 \ 0 \ XEQ 03
+  3 \ 18 \ 0 \ XEQ 03
 
   STOP
 
@@ -68,7 +68,6 @@ LBL "digit"
   RTN
 
   LBL 30 ; draw triangle |\
-    RCL "sThick"
     1 \ STO "tt"
     LBL a
     0 \ RCL "tt" \ RCL "tY" \ RCL "tX" \ XEQ 02
@@ -79,7 +78,14 @@ LBL "digit"
   RTN
 
   LBL 31 ; draw triangle /|
-    ; TODO
+    1 \ STO "tt"
+    LBL b
+    ;0 \ RCL "tt" \ RCL "tY" \ RCL "tX" \ XEQ 02
+    RCL "sThick" \ RCL "tt" \ - \ RCL "tt" \ RCL "tY" \ RCL "tX" \ XEQ 02
+    1 \ STO+ "tt"
+    1 \ STO+ "tY"
+    RCL "sThick" \ RCL "tt" \ X<=Y?
+    GTO b
   RTN
 
   LBL 32 ; draw triangle \|
