@@ -1,11 +1,6 @@
 
 ; digit.hp42
 
-; x --> 01 the digit
-; y --> 02 offset from right side of screen
-; 4 --> 03 gets back the "size" VAR
-; 3 --> 04 gets back the "side" VAR
-
 ; "size" is adj/opp of triangle
 ; "side" is how many sizes in a digit length (edges not included)
 
@@ -17,52 +12,28 @@ LBL "digit"
 
   2 \ STO "GrMod" ; full screen 200x120
   ;3 \ STO "GrMod" ; full screen 400x240
+    ;
+    ; TODO move out, it's the responsibility of the caller
+
+  ;     STO "dDigit"
+  ;Rv \ STO "sOffset"
+  ;Rv \ STO "sThick"
+  ;Rv \ STO "sLength"
+  5 \ STO "sThick"
+  3 \ STO "sLength"
 
   CLLCD
 
-  ;STO "_digit"             ; the digit
-  ;RCL ST Y \ STO "_offset" ; the offset
-  ;4 \ STO "_size"          ; the size
-  ;3 \ STO "_side"          ; the side
-
   10 \ STO "oX"
-  15 \ STO "oY"
-
-  0 \ 0 \ XEQ 01
-  1 \ 1 \ XEQ 01
-  2 \ 2 \ XEQ 01
-
-  10 \ STO "oX"
-  20 \ STO "oY"
-
-; t \ z \ y \ x \
-  0 \ 1 \ 0 \ 0 \ XEQ 02
-  0 \ 2 \ 1 \ 0 \ XEQ 02
-  0 \ 3 \ 2 \ 0 \ XEQ 02
-  1 \ 1 \ 3 \ 0 \ XEQ 02
-  2 \ 2 \ 4 \ 0 \ XEQ 02
-  3 \ 3 \ 5 \ 0 \ XEQ 02
+  10 \ STO "oY"
+  0 \  0 \ 0 \ XEQ 03
+  1 \  6 \ 0 \ XEQ 03
+  2 \ 12 \ 0 \ XEQ 03
+  1 \ 18 \ 0 \ XEQ 03
 
   STOP
 
   GTO 99
-
-  ;LBL 01 ; draw horizontal bar (x, y)
-  ;RTN
-  ;LBL 02 ; draw vertical bar (x, y)
-  ;RTN
-  ;LBL 10 ; draw triangle (x, y) /|
-  ;  ; TODO
-  ;RTN
-  ;LBL 11 ; draw triangle (x, y) |\
-  ;  ; TODO <-----------------------------------------------
-  ;RTN
-  ;LBL 12 ; draw triangle (x, y) \|
-  ;  ; TODO
-  ;RTN
-  ;LBL 13 ; draw triangle (x, y) |/
-  ;  ; TODO
-  ;RTN
 
   LBL 01 ; draw pixel at (x, y) with origin at ("oX", "oY")
     RCL "oX"
@@ -81,7 +52,6 @@ LBL "digit"
     ;Rv \ STO "lT" ; t
     Rv \ STO+ "lX" ; add t to x
     1000 \ STO/ "lZ" \ 1 \ STO+ "lZ"
-    VIEW "lZ"
     LBL 20
     RCL "lY" \ RCL "lX" \ XEQ 01
     1 \ STO+ "lX"
@@ -89,12 +59,37 @@ LBL "digit"
     GTO 20
   RTN
 
-  ;LBL 97 ; draw z pixels at +t offset (x, y, z, t)
-  ;  XEQ 98
-  ;  RCL "sY"
-  ;  RCL "sX"
-  ;  PIXEL
-  ;RTN
+  LBL 03 ; draw triangle
+         STO "tX" ; x
+    Rv \ STO "tY" ; y
+    ;Rv \ STO "tO" ; orientation
+    Rv \ 30 \ + \ STO "tO"
+    XEQ IND "tO"
+  RTN
+
+  LBL 30 ; draw triangle |\
+    RCL "sThick"
+    1 \ STO "tt"
+    LBL a
+    0 \ RCL "tt" \ RCL "tY" \ RCL "tX" \ XEQ 02
+    1 \ STO+ "tt"
+    1 \ STO+ "tY"
+    RCL "sThick" \ RCL "tt" \ X<=Y?
+    GTO a
+  RTN
+
+  LBL 31 ; draw triangle /|
+    ; TODO
+  RTN
+
+  LBL 32 ; draw triangle \|
+    ; TODO
+  RTN
+
+  LBL 33 ; draw triangle |/
+    ; TODO
+  RTN
+
   ;LBL 98 ; save x y
   ;       STO "sX" ; x
   ;  Rv \ STO "sY" ; y
