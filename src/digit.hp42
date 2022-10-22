@@ -80,7 +80,6 @@ LBL "digit"
   LBL 31 ; draw triangle /|
     1 \ STO "tt"
     LBL b
-    ;0 \ RCL "tt" \ RCL "tY" \ RCL "tX" \ XEQ 02
     RCL "sThick" \ RCL "tt" \ - \ RCL "tt" \ RCL "tY" \ RCL "tX" \ XEQ 02
     1 \ STO+ "tt"
     1 \ STO+ "tY"
@@ -89,11 +88,23 @@ LBL "digit"
   RTN
 
   LBL 32 ; draw triangle \|
-    ; TODO
+    RCL "sThick" \ STO "tt"
+    LBL c
+    RCL "sThick" \ RCL "tt" \ - \ RCL "tt" \ RCL "tY" \ RCL "tX" \ XEQ 02
+    1 \ STO- "tt"
+    1 \ STO+ "tY"
+    RCL "tt" \ X>0?
+    GTO c
   RTN
 
   LBL 33 ; draw triangle |/
-    ; TODO
+    RCL "sThick" \ STO "tt"
+    LBL d
+    0 \ RCL "tt" \ RCL "tY" \ RCL "tX" \ XEQ 02
+    1 \ STO- "tt"
+    1 \ STO+ "tY"
+    RCL "tt" \ X>0?
+    GTO d
   RTN
 
   ;LBL 98 ; save x y
