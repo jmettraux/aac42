@@ -19,17 +19,16 @@ LBL "digit"
   ;Rv \ STO "sOffset"
   ;Rv \ STO "sThick"
   ;Rv \ STO "sLength"
-  5 \ STO "sThick"
+  4 \ STO "sThick"
   3 \ STO "sLength"
 
   CLLCD
 
-  10 \ STO "oX"
-  10 \ STO "oY"
-  0 \  0 \ 0 \ XEQ 03
-  1 \  6 \ 0 \ XEQ 03
-  2 \ 12 \ 0 \ XEQ 03
-  3 \ 18 \ 0 \ XEQ 03
+  0 \ STO "oX"
+  1 \ STO "oY"
+
+  0 \ 5 \ XEQ 04 ; horizontal
+  5 \ 0 \ XEQ 05 ; vertical
 
   STOP
 
@@ -105,6 +104,52 @@ LBL "digit"
     1 \ STO+ "tY"
     RCL "tt" \ X>0?
     GTO d
+  RTN
+
+  LBL 34; draw square | |
+    RCL "sThick" \ STO "tt"
+    LBL e
+    0 \ RCL "sThick" \ RCL "tY" \ RCL "tX" \ XEQ 02
+    1 \ STO- "tt"
+    1 \ STO+ "tY"
+    RCL "tt" \ X>0?
+    GTO e
+  RTN
+
+  LBL 04 ; horizontal
+         STO "hX"
+    Rv \ STO "hY"
+    1 \ RCL "hY" \ RCL "hX" \ XEQ 03
+    2 \ RCL "sThick" \ RCL "hY" \ + \ RCL "hX" \ XEQ 03
+    RCL "sLength" \ STO "hl"
+    LBL A
+    RCL "sThick" \ STO+ "hX"
+    4 \ RCL "hY" \ RCL "hX" \ XEQ 03
+    4 \ RCL "sThick" \ RCL "hY" \ + \ RCL "hX" \ XEQ 03
+    1 \ STO- "hl"
+    RCL "hl" \ X>0?
+    GTO A
+    RCL "sThick" \ STO+ "hX"
+    0 \ RCL "hY" \ RCL "hX" \ XEQ 03
+    3 \ RCL "sThick" \ RCL "hY" \ + \ RCL "hX" \ XEQ 03
+  RTN
+
+  LBL 05 ; vertical
+         STO "vX"
+    Rv \ STO "vY"
+    1 \ RCL "vY" \ RCL "vX" \ XEQ 03
+    0 \ RCL "vY" \ RCL "sThick" \ RCL "vX" \ + \ XEQ 03
+    RCL "sLength" \ STO "vl"
+    LBL B
+    RCL "sThick" \ STO+ "vY"
+    4 \ RCL "vY" \ RCL "vX" \ XEQ 03
+    4 \ RCL "vY" \ RCL "sThick" \ RCL "vX" \ + \ XEQ 03
+    1 \ STO- "vl"
+    RCL "vl" \ X>0?
+    GTO B
+    RCL "sThick" \ STO+ "vY"
+    2 \ RCL "vY" \ RCL "vX" \ XEQ 03
+    3 \ RCL "vY" \ RCL "sThick" \ RCL "vX" \ + \ XEQ 03
   RTN
 
   ;LBL 98 ; save x y
