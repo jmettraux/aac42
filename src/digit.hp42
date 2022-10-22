@@ -23,19 +23,15 @@ LBL "digit"
   ;Rv \ STO "sLength"
   4 \ STO "sThick"
   3 \ STO "sLength"
+  RCL "sThick" \ 0 \ + \ RCL "sLength" \ 5 \ + \ x \ 1 \ + \ STO "sSlot"
 
   1 \ STO "oX"
   1 \ STO "oY"
 
-  ;0 \ 5 \ XEQ 04 ; horizontal
-  ;5 \ 0 \ XEQ 05 ; vertical
-  XEQ 60
-  XEQ 61
-  XEQ 62
-  XEQ 63
-  XEQ 64
-  XEQ 65
-  XEQ 66
+  RCL "sSlot" \ 0 \ x \ STO "oX" \ XEQ 70
+  RCL "sSlot" \ 1 \ x \ STO "oX" \ XEQ 71
+  RCL "sSlot" \ 2 \ x \ STO "oX" \ XEQ 72
+  RCL "sSlot" \ 3 \ x \ STO "oX" \ XEQ 73
 
   STOP
 
@@ -193,6 +189,55 @@ LBL "digit"
     RCL "sLength" \ 8 \ + \ RCL "sThick" \ x
     RCL "sThick" \ 1 \ +
     XEQ 04
+  RTN
+
+  LBL 70
+    XEQ 60 \ XEQ 61 \ XEQ 62 \ XEQ 64 \ XEQ 65 \ XEQ 66
+  RTN
+  LBL 71
+    XEQ 62 \ XEQ 65
+  RTN
+  LBL 72
+    XEQ 60 \ XEQ 62 \ XEQ 63 \ XEQ 64 \ XEQ 66
+  RTN
+  LBL 73
+    XEQ 60 \ XEQ 62 \ XEQ 63 \ XEQ 65 \ XEQ 66
+  RTN
+  LBL 74
+    XEQ 61 \ XEQ 62 \ XEQ 63 \ XEQ 65
+  RTN
+  LBL 75
+    XEQ 60 \ XEQ 61 \ XEQ 63 \ XEQ 65 \ XEQ 66
+  RTN
+  LBL 76
+    XEQ 60 \ XEQ 61 \ XEQ 63 \ XEQ 64 \ XEQ 65 \ XEQ 66
+  RTN
+  LBL 77
+    XEQ 60 \ XEQ 62 \ XEQ 65
+  RTN
+  LBL 78
+    XEQ 60 \ XEQ 61 \ XEQ 62 \ XEQ 63 \ XEQ 64 \ XEQ 65 \ XEQ 66
+  RTN
+  LBL 79
+    XEQ 60 \ XEQ 61 \ XEQ 62 \ XEQ 63 \ XEQ 65 \ XEQ 66
+  RTN
+  LBL 80 ; A
+    XEQ 60 \ XEQ 61 \ XEQ 62 \ XEQ 63 \ XEQ 64 \ XEQ 65
+  RTN
+  LBL 81 ; b
+    XEQ 61 \ XEQ 63 \ XEQ 64 \ XEQ 65 \ XEQ 66
+  RTN
+  LBL 82 ; c
+    XEQ 63 \ XEQ 64 \ XEQ 66
+  RTN
+  LBL 83 ; d
+    XEQ 62 \ XEQ 63 \ XEQ 64 \ XEQ 65 \ XEQ 66
+  RTN
+  LBL 84 ; E
+    XEQ 60 \ XEQ 61 \ XEQ 63 \ XEQ 64 \ XEQ 66
+  RTN
+  LBL 85 ; F
+    XEQ 60 \ XEQ 61 \ XEQ 63 \ XEQ 64
   RTN
 
   ;LBL 98 ; save x y
