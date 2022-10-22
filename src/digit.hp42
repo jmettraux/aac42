@@ -10,6 +10,8 @@
 
 LBL "digit"
 
+  CLLCD
+    ;
   2 \ STO "GrMod" ; full screen 200x120
   ;3 \ STO "GrMod" ; full screen 400x240
     ;
@@ -22,13 +24,18 @@ LBL "digit"
   4 \ STO "sThick"
   3 \ STO "sLength"
 
-  CLLCD
-
-  0 \ STO "oX"
+  1 \ STO "oX"
   1 \ STO "oY"
 
-  0 \ 5 \ XEQ 04 ; horizontal
-  5 \ 0 \ XEQ 05 ; vertical
+  ;0 \ 5 \ XEQ 04 ; horizontal
+  ;5 \ 0 \ XEQ 05 ; vertical
+  XEQ 60
+  XEQ 61
+  XEQ 62
+  XEQ 63
+  XEQ 64
+  XEQ 65
+  XEQ 66
 
   STOP
 
@@ -150,6 +157,39 @@ LBL "digit"
     RCL "sThick" \ STO+ "vY"
     2 \ RCL "vY" \ RCL "vX" \ XEQ 03
     3 \ RCL "vY" \ RCL "sThick" \ RCL "vX" \ + \ XEQ 03
+  RTN
+
+  LBL 60 ; top horizontal bar
+    0
+    RCL "sThick" \ 1 \ +
+    XEQ 04
+  RTN
+  LBL 61 ; top left bar
+    RCL "sThick" \ 1 \ +
+    0
+    XEQ 05
+  RTN
+  LBL 62 ; top right bar
+    RCL "sThick" \ 1 \ +
+    RCL "sLength" \ 2.5 \ + \ RCL "sThick" \ x
+    XEQ 05
+  RTN
+  LBL 63 ; middle horizontal bar
+    RCL "sLength" \ 3 \ + \ RCL "sThick" \ x
+    RCL "sThick" \ 1 \ +
+    XEQ 04
+  RTN
+  LBL 64 ; bottom left bar
+    RCL "sLength" \ 4 \ + \ RCL "sThick" \ x \ 1 \ +
+    0
+    XEQ 05
+  RTN
+  LBL 65 ; bottom right bar
+  RTN
+  LBL 66 ; bottom horizontal bar
+    RCL "sLength" \ 8 \ + \ RCL "sThick" \ x
+    RCL "sThick" \ 1 \ +
+    XEQ 04
   RTN
 
   ;LBL 98 ; save x y
