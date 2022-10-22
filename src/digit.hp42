@@ -15,6 +15,9 @@
 
 LBL "digit"
 
+  2 \ STO "GrMod" ; full screen 200x120
+  ;3 \ STO "GrMod" ; full screen 400x240
+
   CLLCD
 
   ;STO "_digit"             ; the digit
