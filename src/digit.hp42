@@ -28,10 +28,19 @@ LBL "digit"
   1 \ STO "oX"
   1 \ STO "oY"
 
-  RCL "sSlot" \ 0 \ x \ STO "oX" \ XEQ 70
-  RCL "sSlot" \ 1 \ x \ STO "oX" \ XEQ 71
-  RCL "sSlot" \ 2 \ x \ STO "oX" \ XEQ 72
-  RCL "sSlot" \ 3 \ x \ STO "oX" \ XEQ 73
+  XEQ 78
+
+  3 \ STO "sThick"
+  3 \ STO "sLength"
+  32 \ STO "oX"
+
+  XEQ 78
+
+  2 \ STO "sThick"
+  2 \ STO "sLength"
+  64 \ STO "oX"
+
+  XEQ 78
 
   STOP
 
@@ -171,7 +180,7 @@ LBL "digit"
     XEQ 05
   RTN
   LBL 63 ; middle horizontal bar
-    RCL "sLength" \ 2.5 \ + \ RCL "sThick" \ x
+    RCL "sThick" \ RCL "sLength" \ 2 \ + \ x \ 2 \ +
     RCL "sThick" \ 1 \ +
     XEQ 04
   RTN
@@ -186,11 +195,14 @@ LBL "digit"
     XEQ 05
   RTN
   LBL 66 ; bottom horizontal bar
-    RCL "sLength" \ 8 \ + \ RCL "sThick" \ x
+    RCL "sThick" \ RCL "sLength" \ 2 \ x \ 4.5 \ + \ x \ 2 \ +
     RCL "sThick" \ 1 \ +
     XEQ 04
   RTN
 
+  LBL 69
+    ; nothing
+  RTN
   LBL 70
     XEQ 60 \ XEQ 61 \ XEQ 62 \ XEQ 64 \ XEQ 65 \ XEQ 66
   RTN
@@ -238,6 +250,17 @@ LBL "digit"
   RTN
   LBL 85 ; F
     XEQ 60 \ XEQ 61 \ XEQ 63 \ XEQ 64
+  RTN
+  ;LBL 86 ; G
+  ;RTN
+  LBL 87 ; H
+    XEQ 61 \ XEQ 62 \ XEQ 63 \ XEQ 64 \ XEQ 65
+  RTN
+  LBL 88 ; I
+    XEQ 65
+  RTN
+  LBL 89 ; J
+    XEQ 62 \ XEQ 65 \ XEQ 66
   RTN
 
   ;LBL 98 ; save x y
