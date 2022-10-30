@@ -17,28 +17,29 @@ LBL "digit"
     ;
     ; TODO move out, it's the responsibility of the caller
 
-  ;     STO "dDigit"
-  ;Rv \ STO "sOffset"
-  ;Rv \ STO "sThick"
-  ;Rv \ STO "sLength"
-  4 \ STO "sThick"
-  3 \ STO "sLength"
-  RCL "sThick" \ 0 \ + \ RCL "sLength" \ 5 \ + \ x \ 1 \ + \ STO "sSlot"
+  ;RCL "sThick" \ 0 \ + \ RCL "sLength" \ 5 \ + \ x \ 1 \ + \ STO "sSlot"
 
-  1 \ STO "oX"
+  3 \ STO "sLength"
   1 \ STO "oY"
+
+  5 \ STO "sThick"
+  1 \ STO "oX"
+
+  XEQ 78
+
+  4 \ STO "sThick"
+  41 \ STO "oX"
 
   XEQ 78
 
   3 \ STO "sThick"
-  3 \ STO "sLength"
-  32 \ STO "oX"
+  81 \ STO "oX"
 
   XEQ 78
 
   2 \ STO "sThick"
   2 \ STO "sLength"
-  64 \ STO "oX"
+  111 \ STO "oX"
 
   XEQ 78
 
